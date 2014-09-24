@@ -1,0 +1,17 @@
+<%= form_for(@playlist) do |f| %>
+
+	<div class="field">
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</div>
+
+	<div class="field">
+		<%= f.label :link %><br>
+		<%= f.text_field :link %>
+	</div>
+
+	<div>
+		<%= f.submit %>
+	</div>
+
+<% end %>

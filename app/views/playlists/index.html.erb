@@ -1,0 +1,21 @@
+<h2> Your Video Playlist </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <br>
+      <th>Video</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <%= render :partial => 'playlist', :collection => @playlists %>
+
+
+
+  </tbody>
+</table>
+
+<br>
