@@ -9,9 +9,14 @@
 		<%= f.label :link %><br>
 		<%= f.text_field :link %>
 	</div>
+	    <%= f.check_box :_destroy, :as => :boolean, :label => "Delete?" %>
 
 	<div>
 		<%= f.submit %>
 	</div>
 
+<% end %>
+
+<%= form_for @playlist, method: :delete do |f| %>
+	<%= f.submit "Delete" %>
 <% end %>
