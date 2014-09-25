@@ -5,18 +5,15 @@ class PlaylistsController < ApplicationController
 		@playlist.save
 		redirect_to @playlist #goes to the show method
 
-		    # @book = Book.new(book_params)
+    def show
+    	@playlist = Playlist.find(params[:id]) # Playlist.find(8)
 
-  #   respond_to do |format|
-  #     if @book.save
-  #       format.html { redirect_to @book, notice: 'Book was successfully created.' }
-  #       format.json { render :show, status: :created, location: @book }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @book.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    	respond_to do |format|
+      		format.html # show.html.erb
+      		format.json { render json: @playlist }
+    	end
+  	end
+
 	end
 
 	def new
@@ -27,14 +24,7 @@ class PlaylistsController < ApplicationController
 		@playlists = Playlist.all
 	end
 
-    def show
-    	@playlist = Playlist.find(params[:id]) # Playlist.find(8)
 
-    	respond_to do |format|
-      		format.html # show.html.erb
-      		format.json { render json: @playlist }
-    	end
-  	end
 
   	def edit
   		@playlist = Playlist.find(params[:id])
@@ -42,25 +32,18 @@ class PlaylistsController < ApplicationController
 
   	def update
   		@playlist = Playlist.find(params[:id])
-    	respond_to do |format|
-      if @playlist.update_attributes(playlist_params)
-        format.json { render :show, status: :ok, location: @playlist }
-      else
-        format.html { render :edit }
-        format.html { redirect_to playlists_url, notice: 'Playlist was successfully updated.' }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+     	@playlist.update_attributes(playlist_params)
+    	redirect_to @playlist    
+	  end
 
-  def destroy
-  	@playlist = Playlist.find(params[:id])
-    @playlist.destroy
-    respond_to do |format|
-      format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  	def destroy
+  		@playlist = Playlist.find(params[:id])
+   	 	@playlist.destroy
+    	respond_to do |format|
+      	format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
+      	format.json { head :no_content }
+    	end
+  	end
 
   	private
   	def playlist_params
